@@ -1,0 +1,65 @@
+var graphics = getSelection();
+
+if (graphics != null) {
+  var groupName = graphics.name();
+  NSApp.sendAction_to_from('copy:', null, sketch.doc);
+
+  var fastLoop = sketch.doc.artboards().objectEnumerator();
+
+  while (board = fastLoop.nextObject()) {
+    var f = board.frame();
+    var size = f.width();
+    var offset = 2000;
+
+    if (size < 1024) {
+
+      // This is a kluge.
+      // If you paste layers in a artboard and those layers are larger than
+      // the board and large enough to be "over" another artboard, the layers
+      // will be pasted to the wrong artboard. I know, weird.
+      // Because of that we'll move the artboard a safe distance on the x axis
+      // and then move it back to it's original place.
+      f.addX(offset);
+
+      board.select_byExpandingSelection(true, false);
+      NSApp.sendAction_to_from('paste:', null, sketch.doc);
+
+      var l = board.layers();
+      var newGroup = l.objectAtIndex(l.count() - 1);
+
+      if (newGroup.name() == groupName) {
+        newGroup.frame().width = size;
+        newGroup.frame().height = size;
+      }
+
+      // Move the artboard back.
+      f.subtractX(offset);
+    }
+  }
+
+  // Center the canvas
+  sketch.doc.currentView().centerRect(selection[0].absoluteRect());
+}
+
+function getSelection () {
+  var el = null;
+  var s = sketch.selection;
+
+  function selectionError () {
+    NSApplication.sharedApplication().displayDialog_withTitle("You'll need to select a group that contains your icon graphics", "Invalid Selection");
+  }
+
+  if (s.count() == 0) {
+    selectionError();
+  }
+  else {
+    if (s[0].className() == 'MSLayerGroup') {
+      el = s[0];
+    }
+    else {
+      selectionError();
+    }
+  }
+
+  return el;
+}
