@@ -33,7 +33,7 @@ iOS App Icon Template:
 1. Create a new Sketch file from the template by going to File > New From Template >
 iOS App Icon
 ![Creating a new iOS App Icon Sketch file](http://f.cl.ly/items/3O1U3R3h0E0w2F0y0j47/stamper-screens.png)
-2. Create your icon graphics on the largest artboard named iTunesArtwork@2x. This
+2. Create your icon graphics on the largest artboard named “iTunesArtwork@2x”. This
 is the 1024x1024px version.
 3. Be sure that your layers are contained within a layer group. This group will
 be copied to all the other artboards.
