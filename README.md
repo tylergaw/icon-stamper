@@ -5,6 +5,8 @@
 Takes full sized art for an icon and creates multiple sizes of it so you don't
 have to.
 
+<iframe src="//player.vimeo.com/video/97067332" width="500" height="333" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
 ## Installation
 There are two different ways to install Icon Stamper. Official Sketch Plugin installation
 documentation can be found in the [plugin docs](http://bohemiancoding.com/sketch/support/developer/01-introduction/01.html).
