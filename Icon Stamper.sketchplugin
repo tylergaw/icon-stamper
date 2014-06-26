@@ -27,9 +27,11 @@ if (graphics != null) {
       var l = board.layers();
       var newGroup = l.objectAtIndex(l.count() - 1);
 
-      if (newGroup.name() == groupName) {
+      if (newGroup.name() == groupName + ' 2') {
         newGroup.frame().width = size;
         newGroup.frame().height = size;
+
+        newGroup.setName(groupName);
       }
 
       // Move the artboard back.
