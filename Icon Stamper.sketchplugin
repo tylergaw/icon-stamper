@@ -1,4 +1,7 @@
-var graphics = getSelection();
+var graphics = getSelection(),
+  sourceArtboardSize = 1024,
+  percentageX = graphics.frame().x() / sourceArtboardSize,
+  percentageY = graphics.frame().y() / sourceArtboardSize;
 
 if (graphics != null) {
   var groupName = graphics.name();
@@ -11,7 +14,7 @@ if (graphics != null) {
     var size = f.width();
     var offset = 2000;
 
-    if (size < 1024) {
+    if (size < sourceArtboardSize) {
 
       // This is a kluge.
       // If you paste layers in a artboard and those layers are larger than
@@ -28,8 +31,13 @@ if (graphics != null) {
       var newGroup = l.objectAtIndex(l.count() - 1);
 
       if (newGroup.name() == groupName + ' 2') {
-        newGroup.frame().width = size;
-        newGroup.frame().height = size;
+        var relativeSizeFactorWidth = newGroup.frame().width() / sourceArtboardSize,
+          relativeSizeFactorHeight = newGroup.frame().height() / sourceArtboardSize;
+
+        newGroup.frame().width = size * relativeSizeFactorWidth;
+        newGroup.frame().height = size * relativeSizeFactorHeight;
+        newGroup.frame().x = size * percentageX;
+        newGroup.frame().y = size * percentageY;
 
         newGroup.setName(groupName);
       }
