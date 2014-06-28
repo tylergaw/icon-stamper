@@ -30,17 +30,15 @@ if (graphics != null) {
       var l = board.layers();
       var newGroup = l.objectAtIndex(l.count() - 1);
 
-      if (newGroup.name() == groupName + ' 2') {
-        var relativeSizeFactorWidth = newGroup.frame().width() / sourceArtboardSize,
-          relativeSizeFactorHeight = newGroup.frame().height() / sourceArtboardSize;
+      var relativeSizeFactorWidth = newGroup.frame().width() / sourceArtboardSize,
+        relativeSizeFactorHeight = newGroup.frame().height() / sourceArtboardSize;
 
-        newGroup.frame().width = size * relativeSizeFactorWidth;
-        newGroup.frame().height = size * relativeSizeFactorHeight;
-        newGroup.frame().x = size * percentageX;
-        newGroup.frame().y = size * percentageY;
+      newGroup.frame().width = size * relativeSizeFactorWidth;
+      newGroup.frame().height = size * relativeSizeFactorHeight;
+      newGroup.frame().x = size * percentageX;
+      newGroup.frame().y = size * percentageY;
 
-        newGroup.setName(groupName);
-      }
+      newGroup.setName(groupName);
 
       // Move the artboard back.
       f.subtractX(offset);
