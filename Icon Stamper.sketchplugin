@@ -1,13 +1,13 @@
 var graphics = getSelection(),
-  sourceArtboardSize = 1024,
-  percentageX = graphics.frame().x() / sourceArtboardSize,
-  percentageY = graphics.frame().y() / sourceArtboardSize;
+    sourceArtboardSize = 1024,
+    percentageX = graphics.frame().x() / sourceArtboardSize,
+    percentageY = graphics.frame().y() / sourceArtboardSize;
 
 if (graphics != null) {
   var groupName = graphics.name();
-  NSApp.sendAction_to_from('copy:', null, sketch.doc);
+  NSApp.sendAction_to_from('copy:', null, context.document);
 
-  var fastLoop = sketch.doc.artboards().objectEnumerator();
+  var fastLoop = context.document.artboards().objectEnumerator();
 
   while (board = fastLoop.nextObject()) {
     var f = board.frame();
@@ -25,7 +25,7 @@ if (graphics != null) {
       f.addX(offset);
 
       board.select_byExpandingSelection(true, false);
-      NSApp.sendAction_to_from('paste:', null, sketch.doc);
+      NSApp.sendAction_to_from('paste:', null, context.document);
 
       var l = board.layers();
       var newGroup = l.objectAtIndex(l.count() - 1);
@@ -46,12 +46,12 @@ if (graphics != null) {
   }
 
   // Center the canvas
-  sketch.doc.currentView().centerRect(selection[0].absoluteRect());
+  context.document.currentView().centerRect(context.selection[0].rect());
 }
 
 function getSelection () {
   var el = null;
-  var s = sketch.selection;
+  var s = context.selection;
 
   function selectionError () {
     NSApplication.sharedApplication().displayDialog_withTitle("You'll need to select a group that contains your icon graphics", "Invalid Selection");
