@@ -46,7 +46,7 @@ if (graphics != null) {
   }
 
   // Center the canvas
-  context.document.currentView().centerRect(context.selection[0].rect());
+  context.document.currentView().centerRect(context.selection[0].absoluteRect().rect());
 }
 
 function getSelection () {
