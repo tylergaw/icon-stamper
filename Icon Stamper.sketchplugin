@@ -30,11 +30,7 @@ if (graphics != null) {
       var l = board.layers();
       var newGroup = l.objectAtIndex(l.count() - 1);
 
-      var relativeSizeFactorWidth = newGroup.frame().width() / sourceArtboardSize,
-        relativeSizeFactorHeight = newGroup.frame().height() / sourceArtboardSize;
-
-      newGroup.frame().width = size * relativeSizeFactorWidth;
-      newGroup.frame().height = size * relativeSizeFactorHeight;
+      newGroup.multiplyBy(board.frame().width() / sourceArtboardSize);
       newGroup.frame().x = size * percentageX;
       newGroup.frame().y = size * percentageY;
 
