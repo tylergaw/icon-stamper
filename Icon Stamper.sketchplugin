@@ -12,7 +12,7 @@ if (graphics != null) {
   while (board = fastLoop.nextObject()) {
     var f = board.frame();
     var size = f.width();
-    var offset = 2000;
+    var offset = 100;
 
     if (size < sourceArtboardSize) {
 
@@ -37,7 +37,7 @@ if (graphics != null) {
       newGroup.setName(groupName);
 
       // Move the artboard back.
-      f.subtractX(offset);
+      f.addX(offset);
     }
   }
 
